@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Save the Date — 06.12.2025 • Ferrara</title>
+  <title>It's Your Fucking Birthday — 06.12.2025 • Ferrara</title>
   <meta name="description" content="Save the date per il compleanno: 06.12.2025, ore 19:00 — Ferrara, secret location." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,7 @@
     .top-title{
       font-weight: 900;
       text-transform: uppercase;
-      font-size: clamp(28px, 8vw, 96px);
+      font-size: clamp(32px, 9vw, 110px);
       line-height: 1;
       text-align:center;
       text-shadow: 0 1px 0 #000, 0 8px 40px rgba(0,0,0,.55);
@@ -53,22 +53,37 @@
     .date{
       font-weight: 900; 
       letter-spacing: .04em; 
-      font-size: clamp(32px, 9.5vw, 120px);
+      font-size: clamp(32px, 9vw, 120px);
       line-height: .95; 
       text-align:center;
       text-shadow: 0 1px 0 #000, 0 10px 50px rgba(0,0,0,.55);
     }
     .stack{ 
-      margin-top: clamp(8px, 2.5vh, 20px);
-      display:grid; gap: clamp(4px, 1.6vh, 10px);
+      margin-top: clamp(12px, 3vh, 28px);
+      display:grid; gap: clamp(6px, 2vh, 18px);
       place-items:center; text-align:center;
     }
     .stack .line{
-      font-weight: 800; 
-      font-size: clamp(18px, 4.6vw, 52px);
+      font-weight: 900; 
+      font-size: clamp(22px, 5.5vw, 68px);
       text-transform: lowercase;
       text-shadow: 0 1px 0 #000, 0 8px 36px rgba(0,0,0,.55);
     }
+
+    /* BOTTOM AREA */
+    .bottom{ grid-area: bottom; display:grid; place-items:center; gap: clamp(8px, 2vh, 20px); padding: clamp(16px, 3vw, 28px); }
+
+    .rsvp-btn{
+      display:inline-block; text-decoration:none; cursor:pointer; user-select:none;
+      font-weight: 900; text-transform: uppercase; letter-spacing:.06em;
+      font-size: clamp(22px, 6vw, 80px);
+      padding: .2em .4em; border: 2px solid currentColor; border-radius: 18px;
+      background: rgba(0,0,0,.35); backdrop-filter: blur(2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.06);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+    .rsvp-btn:hover{ transform: translateY(-2px); background: rgba(0,0,0,.45); box-shadow: 0 12px 34px rgba(0,0,0,.45); }
+    .rsvp-btn:active{ transform: translateY(0); }
 
     #countdown{
       font-weight: 900;
@@ -86,57 +101,107 @@
     @media (min-width: 1400px){
       .date{ letter-spacing: .06em; }
     }
+
+    /* MODAL EMBED */
+    .modal{ position: fixed; inset:0; display:none; align-items:center; justify-content:center; z-index: 50; }
+    .modal.open{ display:flex; }
+    .modal::before{ content:""; position:absolute; inset:0; background: rgba(0,0,0,.75); backdrop-filter: blur(4px) saturate(120%); }
+    .modal-card{ position:relative; width: min(1000px, 96vw); height: min(80vh, 900px); background: #0d0d0d; border: 2px solid var(--accent); border-radius: 18px; box-shadow: 0 30px 120px rgba(0,0,0,.7); overflow:hidden; transform: translateY(20px); opacity:0; }
+    .modal.open .modal-card{ animation: pop .35s cubic-bezier(.2,.7,.2,1) forwards; }
+    @keyframes pop{ to { transform: translateY(0); opacity:1; }}
+    .modal-head{ display:flex; align-items:center; justify-content:space-between; padding: 12px 16px; background: rgba(255,255,255,.02); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .modal-title{ font-weight:900; font-size: clamp(16px, 2.6vw, 22px); text-transform: uppercase; }
+    .modal-close{ appearance:none; cursor:pointer; border:0; background:transparent; color: var(--accent); font-weight:900; font-size: clamp(16px, 4vw, 24px); padding: 6px 10px; border-radius: 10px; }
+    .modal-body{ height: calc(100% - 54px); }
+    .modal-body iframe{ width:100%; height:100%; border:0; }
   </style>
 </head>
 <body>
   <header>
-    <div class="top-title reveal" style="--delay:0s">FERRARA</div>
+    <div class="top-title reveal" style="--delay:0s">save the date</div>
   </header>
 
   <main>
     <div style="display:grid; place-items:center; gap: clamp(6px, 2vh, 18px); max-width: var(--maxw);">
       <div class="date reveal" style="--delay:.3s">06.12.2025</div>
       <div class="stack">
-        <div class="line reveal" style="--delay:.6s">save the date</div>
-        <div class="line reveal" style="--delay:.9s">your fucking birthday</div>
-        <div class="line reveal" style="--delay:1.2s">19:00 - secret location</div>
+        <div class="line reveal" style="--delay:.6s">it's your fucking birthday</div>
+        <div class="line reveal" style="--delay:.9s">19:00 - secret location</div>
       </div>
     </div>
   </main>
 
   <div class="bottom">
-    <div id="countdown" class="reveal" style="--delay:1.5s">—</div>
+    <a class="rsvp-btn reveal" style="--delay:1.0s" id="rsvpOpen" role="button" aria-haspopup="dialog" aria-controls="rsvpModal">RSVP</a>
+    <div id="countdown" class="reveal" style="--delay:1.2s">—</div>
+  </div>
+
+  <!-- MODAL CON EMBED JOTFORM (stessa pagina) -->
+  <div class="modal" id="rsvpModal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
+    <div class="modal-card" role="document">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle">RSVP</div>
+        <button class="modal-close" id="rsvpClose" aria-label="Chiudi">✕</button>
+      </div>
+      <div class="modal-body">
+        <iframe
+          id="JotFormIFrame-253125441212039"
+          title="Birthday Save the Date RSVP"
+          allow="geolocation; microphone; camera; fullscreen; payment"
+          src="https://form.jotform.com/253125441212039"
+        ></iframe>
+        <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
+        <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-253125441212039']", "https://form.jotform.com/")</script>
+      </div>
+    </div>
   </div>
 
   <script>
+    // Animazioni
     window.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => {
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('run'))
       })
     })
 
+    // Countdown
     const target = new Date('2025-12-06T19:00:00+01:00');
     const el = document.getElementById('countdown');
-
     function pad(n){ return String(n).padStart(2,'0') }
-
     function tick(){
       const now = new Date();
       let diff = target - now;
-      if(diff <= 0){
-        el.textContent = 'IT\'S TIME — 🎉';
-        return;
-      }
+      if(diff <= 0){ el.textContent = "IT'S TIME — 🎉"; return; }
       const sec = Math.floor(diff/1000);
       const days = Math.floor(sec/86400);
       const hrs  = Math.floor((sec%86400)/3600);
       const mins = Math.floor((sec%3600)/60);
       const s    = sec%60;
-
       el.innerHTML = `${days}d : ${pad(hrs)}h : ${pad(mins)}m : ${pad(s)}s`;
     }
-    tick();
-    setInterval(tick, 1000);
+    tick(); setInterval(tick, 1000);
+
+    // Modal logic (open/close + focus handling)
+    const modal = document.getElementById('rsvpModal');
+    const openBtn = document.getElementById('rsvpOpen');
+    const closeBtn = document.getElementById('rsvpClose');
+
+    function openModal(){
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      openBtn.focus();
+    }
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
   </script>
 </body>
 </html>
