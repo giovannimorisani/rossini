@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Save the Date — 06.12.2025 • Ferrara</title>
+  <meta name="description" content="Save the date per il compleanno: 06.12.2025, ore 19:00 — Ferrara, secret location." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent: #ff1a1a;   /* rosso principale */
+      --bg-dim: rgba(0,0,0,.42); /* overlay per leggibilità */
+      --maxw: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; 
+      font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--accent);
+      display:grid; 
+      grid-template-rows: minmax(90px,18vh) 1fr auto; 
+      grid-template-areas: "top" "center" "bottom";
+      min-height:100dvh;
+      overflow-x:hidden;
+      letter-spacing: .02em;
+      background:#000; /* fallback */
+    }
+
+    /* BACKGROUND IMAGE (cover on ogni viewport) */
+    body::before{
+      content: ""; position: fixed; inset: 0; z-index: -2;
+      background: url('bg.jpg') center / cover no-repeat;
+      transform: translateZ(0);
+    }
+    /* overlay scuro per contrasto */
+    body::after{
+      content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(ellipse at center, rgba(0,0,0,.25), rgba(0,0,0,.6) 65%), linear-gradient(var(--bg-dim), var(--bg-dim));
+      backdrop-filter: saturate(90%);
+    }
+
+    /* LAYOUT */
+    header{ grid-area: top; display:grid; place-items:center; }
+    main{ grid-area: center; display:grid; place-items:center; padding-inline: clamp(16px, 3vw, 32px); }
+    footer{ grid-area: bottom; display:grid; place-items:center; gap: 10px; padding: clamp(16px, 3vw, 28px); }
+
+    /* TIPOGRAFIA RESPONSIVE */
+    .top-title{
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: clamp(28px, 8vw, 96px);
+      line-height: 1;
+      text-align:center;
+      text-shadow: 0 1px 0 #000, 0 8px 40px rgba(0,0,0,.55);
+    }
+    .date{
+      font-weight: 900; 
+      letter-spacing: .04em; 
+      font-size: clamp(36px, 11vw, 140px);
+      line-height: .95; 
+      text-align:center;
+      text-shadow: 0 1px 0 #000, 0 10px 50px rgba(0,0,0,.55);
+    }
+    .stack{ 
+      margin-top: clamp(8px, 2.5vh, 20px);
+      display:grid; gap: clamp(4px, 1.6vh, 10px);
+      place-items:center; text-align:center;
+    }
+    .stack .line{
+      font-weight: 800; 
+      font-size: clamp(16px, 3.8vw, 42px);
+      text-transform: lowercase;
+      text-shadow: 0 1px 0 #000, 0 8px 36px rgba(0,0,0,.55);
+    }
+
+    /* COUNTDOWN */
+    #countdown{
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(24px, 7vw, 90px);
+      line-height: 1; text-align:center;
+      text-shadow: 0 1px 0 #000, 0 8px 40px rgba(0,0,0,.6);
+      letter-spacing: .02em;
+    }
+
+    .credits{
+      color: rgba(255,26,26,.9);
+      font-weight: 700; font-size: clamp(12px, 2.4vw, 16px); text-transform: lowercase;
+      opacity:.95; text-align:center;
+    }
+
+    /* ANIMAZIONI SEQUENZIALI (0.3s di differenza) */
+    .reveal{ opacity:0; transform: translateY(10px) scale(.98); }
+    .reveal.run{ animation: rise .8s var(--delay, 0s) cubic-bezier(.2,.7,.2,1) forwards; }
+    @keyframes rise{ to { opacity:1; transform: translateY(0) scale(1); }}
+
+    /* miglioramenti per schermi grandi */
+    @media (min-width: 1400px){
+      .date{ letter-spacing: .06em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-title reveal" style="--delay:0s">FERRARA</div>
+  </header>
+
+  <main>
+    <div style="display:grid; place-items:center; gap: clamp(6px, 2vh, 18px); max-width: var(--maxw);">
+      <div class="date reveal" style="--delay:.3s">06.12.2025</div>
+      <div class="stack">
+        <div class="line reveal" style="--delay:.6s">save the date</div>
+        <div class="line reveal" style="--delay:.9s">your fucking birthday</div>
+        <div class="line reveal" style="--delay:1.2s">19:00 - secret location</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div id="countdown" class="reveal" style="--delay:1.5s">—</div>
+    <div class="credits">proloco juglin production &amp;co</div>
+  </footer>
+
+  <script>
+    // Avvia animazioni appena la pagina è pronta
+    window.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('run'))
+      })
+    })
+
+    // Countdown verso 6 dicembre 2025, 19:00 ora di Ferrara (CET)
+    const target = new Date('2025-12-06T19:00:00+01:00');
+    const el = document.getElementById('countdown');
+
+    function pad(n){ return String(n).padStart(2,'0') }
+
+    function tick(){
+      const now = new Date();
+      let diff = target - now;
+      if(diff <= 0){
+        el.textContent = 'IT\'S TIME — 🎉';
+        return;
+      }
+      const sec = Math.floor(diff/1000);
+      const days = Math.floor(sec/86400);
+      const hrs  = Math.floor((sec%86400)/3600);
+      const mins = Math.floor((sec%3600)/60);
+      const s    = sec%60;
+
+      el.innerHTML = `${days}d : ${pad(hrs)}h : ${pad(mins)}m : ${pad(s)}s`;
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
