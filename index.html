@@ -122,44 +122,26 @@
 </head>
 <body>
   <header>
-    <div class="top-title reveal" style="--delay:0s">save the date</div>
+    <div class="top-title reveal" style="--delay:0s">rossini <br>it's your fucking birthday</div>
   </header>
 
   <main>
     <div style="display:grid; place-items:center; gap: clamp(6px, 2vh, 18px); max-width: var(--maxw);">
       <div class="date reveal" style="--delay:.3s">06.12.2025</div>
-      <div class="stack">
-        <div class="line reveal" style="--delay:.6s">it's your fucking birthday</div>
-        <div class="line reveal" style="--delay:.9s">19:00 - secret location</div>
+      <div class="date reveal">
+        <div class="line reveal" style="--delay:.6s">19:00</div>
+        <div class="line reveal" style="--delay:.9s">dress code:</div>
+        <div class="line reveal" style="--delay:1.4s"><br>full black</div>
       </div>
     </div>
   </main>
 
   <div class="bottom">
-    <a class="rsvp-btn reveal" style="--delay:1.0s" id="rsvpOpen" role="button" aria-haspopup="dialog" aria-controls="rsvpModal">RSVP</a>
+
     <div id="countdown" class="reveal" style="--delay:1.2s">—</div>
   </div>
 
-  <!-- MODAL CON EMBED JOTFORM (stessa pagina) -->
-  <div class="modal" id="rsvpModal" aria-hidden="true" aria-labelledby="modalTitle" role="dialog">
-    <div class="modal-card" role="document">
-      <div class="modal-head">
-        <div class="modal-title" id="modalTitle">RSVP</div>
-        <button class="modal-close" id="rsvpClose" aria-label="Chiudi">✕</button>
-      </div>
-      <div class="modal-body">
-        <iframe
-          id="JotFormIFrame-253125441212039"
-          title="Birthday Save the Date RSVP"
-          allow="geolocation; microphone; camera; fullscreen; payment"
-          src="https://form.jotform.com/253125441212039"
-        ></iframe>
-        <script src='https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'></script>
-        <script>window.jotformEmbedHandler("iframe[id='JotFormIFrame-253125441212039']", "https://form.jotform.com/")</script>
-      </div>
-    </div>
-  </div>
-
+  
   <script>
     // Animazioni
     window.addEventListener('DOMContentLoaded', () => {
